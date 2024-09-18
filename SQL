@@ -1,0 +1,16 @@
+SELECT 
+
+[SubCategoryName] = [Name]
+,[Products] = ( Select
+					STUFF (
+							(
+							SELECT ';' +[Name]
+      
+							FROM [AdventureWorks2019].[Production].[Product]p
+							where p.ProductSubcategoryID =ps.ProductSubcategoryID
+							FOR XML PATH('')),1,1,''))
+
+
+FROM [AdventureWorks2019].[Production].[ProductSubcategory]ps
+
+keywords: XML, PATH, XML PATH, STUFF
